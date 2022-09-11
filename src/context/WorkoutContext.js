@@ -12,6 +12,10 @@ export const workoutsReducer = (state, action) => {
             return {
                 workouts: [...state.workouts, action.payload]
             }
+        case 'DELETE_WORKOUT':
+            return {
+                workouts: [...action.payload]
+            }
         default:
             return state;
     }
