@@ -12,6 +12,14 @@ const WorkoutForm = () => {
         e.preventDefault();
 
         const workout = { title, load, reps };
+        const emptyFields = [];
+        if (!title) { emptyFields.push('title'); }
+        if (!load) { emptyFields.push('load'); }
+        if (!reps) { emptyFields.push('reps'); }
+        if (emptyFields.length > 0) {
+            setError(`please fill the fields: ${emptyFields}`);
+            return;
+        }
 
         const response = await fetch('http://localhost:4000/api/workouts/', {
             method: 'POST',
@@ -28,7 +36,7 @@ const WorkoutForm = () => {
             console.log(`error: ${json.message}`);
             setError(json.message);
         }
-        else {            
+        else {
             dispatch({ type: 'CREATE_WORKOUT', payload: json });
             setError(null);
             setTitle('');
