@@ -6,7 +6,7 @@ const WorkoutDetails = ({ workout }) => {
     const { workouts, dispatch } = useWorkoutContext();
     const handleClick = async () => {
 
-        const response = await fetch(`http://localhost:4000/api/workouts/${workout._id}`, {
+        const response = await fetch(`/api/workouts/${workout._id}`, {
             method: 'DELETE'
         });
         const json = await response.json();
